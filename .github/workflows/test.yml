@@ -49,7 +49,8 @@ jobs:
       #     path: /tmp/Desingnite_Output_${{ github.sha }}
 
       - name: Test Action
-        uses: IP1102/designite-diff-action@f8b28ee85a15d93d14e5a333859764f7968464cb
+        uses: IP1102/designite-diff-action@0ae3140e3c9f78b467055732c10b68a0e3b7f511
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-name: ${{ github.repository }}
       
