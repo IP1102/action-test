@@ -49,7 +49,7 @@ jobs:
       #     path: /tmp/Desingnite_Output_${{ github.sha }}
 
       - name: Test Action
-        uses: IP1102/designite-diff-action@f9bc6729ca6f2f4f6119a7540e68616dc702a77b
+        uses: IP1102/designite-diff-action@f8b28ee85a15d93d14e5a333859764f7968464cb
         with:
           who-to-greet: 'Mona the Octocat'
       
