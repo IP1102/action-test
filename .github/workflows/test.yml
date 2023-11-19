@@ -3,7 +3,7 @@ name: Dummy workflow
 on:
   push:
     branches:
-      - test-workflow
+      - main
 
 jobs:
   test:
