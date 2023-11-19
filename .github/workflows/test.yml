@@ -51,5 +51,5 @@ jobs:
       - name: Test Action
         uses: IP1102/designite-diff-action@f8b28ee85a15d93d14e5a333859764f7968464cb
         with:
-          who-to-greet: 'Mona the Octocat'
+          github-token: {{ secrets.GITHUB_TOKEN }}
       
