@@ -30,27 +30,28 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
 
-      # - uses: actions/setup-java@v1
-      #   with:
-      #     java-version: 17
-      #     distribution: 'corrretto'
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 17
+          distribution: 'corrretto'
       
       - name: Run Designite Java
         uses: actions/checkout@v4
         
-      # - run: |
-      #     java --version
-      #     java -jar ./.github/DesigniteJava.jar -i ./ -o /tmp/Desingnite_Output_${{ github.sha }} -d
+      - run: |
+          java --version
+          java -jar ./.github/DesigniteJava.jar -i ./ -o /tmp/Desingnite_Output_${{ github.sha }} -d
       
-      # - name: Archive Designite results
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: designite-output-${{ github.sha }}
-      #     path: /tmp/Desingnite_Output_${{ github.sha }}
+      - name: Archive Designite results
+        uses: actions/upload-artifact@v3
+        with:
+          name: designite-output-${{ github.sha }}
+          path: /tmp/Desingnite_Output_${{ github.sha }}
 
       - name: Test Action
-        uses: IP1102/designite-diff-action@2a1d272d92b8a82fdf41595601a610d9c82450cc
+        uses: IP1102/designite-diff-action@b7b7680e89adc3457c9acbe58461a164eaf26b3f
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           repo-name: ${{ github.repository }}
+          run-id: ${{ github.run_id }}
       
