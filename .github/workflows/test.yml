@@ -5,9 +5,17 @@ on:
     branches:
       - main
 
+
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    outputs:
+      designite-output: ${{ steps.designite.outputs.designite-output }}
+
+    env:
+      DESIGNITE_OUTPUT: /tmp/Desingnite_Output_${{ github.sha }}
+      
     steps:
       # - uses: actions/checkout@v2
       # - uses: actions/setup-python@v2
@@ -37,21 +45,31 @@ jobs:
       
       - name: Run Designite Java
         uses: actions/checkout@v4
-        
-      - run: |
+        id: designite
+        run: |
           java --version
-          java -jar ./.github/DesigniteJava.jar -i ./ -o /tmp/Desingnite_Output_${{ github.sha }} -d
+          echo "${{env.DESIGNITE_OUTPUT}}"
+          java -jar ./.github/DesigniteJava.jar -i ./ -o "${{env.DESIGNITE_OUTPUT}}" -d
       
       - name: Archive Designite results
         uses: actions/upload-artifact@v3
         with:
           name: designite-output-${{ github.sha }}
-          path: /tmp/Desingnite_Output_${{ github.sha }}
+          path: "${{env.DESIGNITE_OUTPUT}}"
+        
+        outputs:
+          designite-output: "${{env.DESIGNITE_OUTPUT}}"      
 
+  compare:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
       - name: Test Action
-        uses: IP1102/designite-diff-action@d41c17810eb766ee430ad36957403fcff19c6a71
+        uses: IP1102/designite-diff-action@097bf85a0080676cd1ad69079e6a029238b33f0d
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          repo-name: ${{ github.repository }}
-          run-id: ${{ github.run_id }}
+          designite-output: ${{ needs.test.outputs.designite-output }}
+          run-id: ${{ github.run_id }}    
+
+
       
