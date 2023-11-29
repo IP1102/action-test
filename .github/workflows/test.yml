@@ -6,16 +6,12 @@ on:
       - main
 
 
+env:
+  DESIGNITE_OUTPUT: /tmp/Desingnite_Output_${{ github.sha }}
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    outputs:
-      designite-output: ${{ steps.designite.outputs.designite-output }}
-
-    env:
-      DESIGNITE_OUTPUT: /tmp/Desingnite_Output_${{ github.sha }}
-      
+    runs-on: ubuntu-latest      
     steps:
       # - uses: actions/checkout@v2
       # - uses: actions/setup-python@v2
@@ -59,9 +55,7 @@ jobs:
         with:
           name: designite-output-${{ github.sha }}
           path: "${{env.DESIGNITE_OUTPUT}}"
-        
-        outputs:
-          designite-output: "${{env.DESIGNITE_OUTPUT}}"      
+ 
 
   compare:
     runs-on: ubuntu-latest
@@ -71,7 +65,7 @@ jobs:
         uses: IP1102/designite-diff-action@097bf85a0080676cd1ad69079e6a029238b33f0d
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          designite-output: ${{ needs.test.outputs.designite-output }}
+          designite-output: ${{ env.DESIGNITE_OUTPUT }}
           run-id: ${{ github.run_id }}    
 
 
