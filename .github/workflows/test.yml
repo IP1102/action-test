@@ -62,7 +62,7 @@ jobs:
     needs: test
     steps:
       - name: Test Action
-        uses: IP1102/designite-diff-action@097bf85a0080676cd1ad69079e6a029238b33f0d
+        uses: IP1102/designite-diff-action@0539276230c04e09dbe009a89d6d0a21663ec3d9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           designite-output: ${{ env.DESIGNITE_OUTPUT }}
