@@ -55,18 +55,14 @@ jobs:
         with:
           name: designite-output-${{ github.sha }}
           path: "${{env.DESIGNITE_OUTPUT}}"
- 
 
-  compare:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
       - name: Test Action
-        uses: IP1102/designite-diff-action@0539276230c04e09dbe009a89d6d0a21663ec3d9
+        uses: IP1102/designite-diff-action@f42905cd44698bb0be37fd9a614a3a316213d2c3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           designite-output: ${{ env.DESIGNITE_OUTPUT }}
-          repo-name: ${{ github.repository }}    
+          repo-name: ${{ github.repository }}             
+
 
 
       
