@@ -43,13 +43,16 @@ jobs:
           java-version: 17
           distribution: 'corrretto'
       
-      - name: Run Designite Java
+      - name: Checkout
         uses: actions/checkout@v4
+        
+        
+      - name: Run Designite
         id: designite
         run: |
-          java --version
-          echo "${{env.DESIGNITE_OUTPUT}}"
-          java -jar ./.github/DesigniteJava.jar -i ./ -o "${{env.DESIGNITE_OUTPUT}}" -d
+            java --version
+            echo "${{env.DESIGNITE_OUTPUT}}"
+            java -jar ./.github/DesigniteJava.jar -i ./ -o "${{env.DESIGNITE_OUTPUT}}" -d
       
       - name: Archive Designite results
         uses: actions/upload-artifact@v3
