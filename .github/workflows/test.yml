@@ -57,7 +57,7 @@ jobs:
           path: "${{env.DESIGNITE_OUTPUT}}"
 
       - name: Test Action
-        uses: IP1102/designite-diff-action@f42905cd44698bb0be37fd9a614a3a316213d2c3
+        uses: IP1102/designite-diff-action@841ef088f1cc89db80dda3edd05d4bd7e1381f6d
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           designite-output: ${{ env.DESIGNITE_OUTPUT }}
