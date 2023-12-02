@@ -48,7 +48,7 @@ jobs:
         run: |
             java --version
             echo "${{env.DESIGNITE_OUTPUT}}"
-            java -jar ./.github/DesigniteJava.jar -i ./ -o "${{env.DESIGNITE_OUTPUT}}" -d
+            java -jar ./.github/DesigniteJava.jar -i ./ -o ./ -d
       
       - name: Archive Designite results
         uses: actions/upload-artifact@v3
