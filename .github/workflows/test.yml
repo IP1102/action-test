@@ -7,7 +7,7 @@ on:
 
 
 env:
-  DESIGNITE_OUTPUT: /tmp/Desingnite_Output_${{ github.sha }}
+  DESIGNITE_OUTPUT: ./Desingnite_Output_${{ github.sha }}
 
 jobs:
   test:
@@ -48,7 +48,7 @@ jobs:
         run: |
             java --version
             echo "${{env.DESIGNITE_OUTPUT}}"
-            java -jar ./.github/DesigniteJava.jar -i ./ -o ./ -d
+            java -jar ./.github/DesigniteJava.jar -i ./ -o "${{env.DESIGNITE_OUTPUT}}" -d
       
       - name: Archive Designite results
         uses: actions/upload-artifact@v3
@@ -57,7 +57,7 @@ jobs:
           path: "${{env.DESIGNITE_OUTPUT}}"
 
       - name: Verify
-        run: ls -a /tmp/
+        run: ls -a ./
 
       - name: Test Action
         uses: IP1102/designite-diff-action@a29aa53936cbba37ea81a9e51315d9492d4b9a5c
