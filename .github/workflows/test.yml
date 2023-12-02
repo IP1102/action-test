@@ -59,6 +59,11 @@ jobs:
       - name: Verify
         run: ls -a ./
 
+      - name: Download previous version
+        uses: actions/download-artifact@v3
+        with:
+          name: designite-output-${{ github.event.before }}
+
       - name: Test Action
         uses: IP1102/designite-diff-action@b4c5b9a7fc5db3923abd7b02c99dcaa8652af2d7
         with:
