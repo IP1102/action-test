@@ -56,9 +56,6 @@ jobs:
           name: designite-output-${{ github.sha }}
           path: "${{env.DESIGNITE_OUTPUT}}"
 
-      - name: Verify
-        run: ls -a ./
-
       # - name: Download previous version
       #   uses: actions/download-artifact@v3
       #   with:
@@ -71,6 +68,7 @@ jobs:
           designite-output: designite-output-${{ github.event.before }}
           repo-name: ${{ github.repository }}             
 
-
+      - name: Verify
+        run: ls -a ./
 
       
