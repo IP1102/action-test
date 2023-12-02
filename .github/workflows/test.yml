@@ -56,9 +56,11 @@ jobs:
           name: designite-output-${{ github.sha }}
           path: "${{env.DESIGNITE_OUTPUT}}"
 
-      - name: Test Action
-        uses: IP1102/designite-diff-action@3f7d21cdb821076c7ad19372b7700e4db0b2fc25
+      - name: Verify
         run: ls -a /tmp/
+
+      - name: Test Action
+        uses: IP1102/designite-diff-action@f8e6c9f8ed42603d7c0175312a10d52d2e899ac1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           designite-output: ${{ env.DESIGNITE_OUTPUT }}
