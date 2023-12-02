@@ -58,6 +58,7 @@ jobs:
 
       - name: Test Action
         uses: IP1102/designite-diff-action@3f7d21cdb821076c7ad19372b7700e4db0b2fc25
+        run: ls -a /tmp/
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           designite-output: ${{ env.DESIGNITE_OUTPUT }}
