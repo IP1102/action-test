@@ -7,7 +7,7 @@ on:
 
 
 env:
-  DESIGNITE_OUTPUT: ./Desingnite_Output_${{ github.sha }}
+  DESIGNITE_OUTPUT: ./desingnite-output-${{ github.sha }}
 
 jobs:
   test:
