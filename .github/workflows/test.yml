@@ -46,10 +46,11 @@ jobs:
       #     name: designite-output-${{ github.event.before }}
 
       - name: Test Action
-        uses: IP1102/designite-diff-action@29a0634b4f99010b1b1aecba089908d33f313e88
+        uses: IP1102/designite-diff-action@de46d0dc0050c45c5ec30f54424dd935ede3c87b
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          designite-output: designite-output-${{ github.event.before }}
+          designite-output-old: designite-output-${{ github.event.before }}
+          designite-output-new: designite-output-${{ github.sha }}
           repo-name: ${{ github.repository }}             
 
       - name: Verify
