@@ -46,7 +46,7 @@ jobs:
       #     name: designite-output-${{ github.event.before }}
 
       - name: Test Action
-        uses: IP1102/designite-diff-action@e3c35ef2d3047d4e3381a5537b5ae70147ae655e
+        uses: IP1102/designite-diff-action@9e97a6b5209c472d78d9d69d81a0f2dce83e0526
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           designite-output-old: designite-output-${{ github.event.before }}
